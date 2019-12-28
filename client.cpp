@@ -32,13 +32,13 @@ int main()
 
 	// socket IP and port
     printf("\tsetting IP and port!\n");
-	/* local 
+	/* local */
 	info.sin_addr.s_addr = inet_addr("127.0.0.1");     // local IP address
     info.sin_port = htons(8700);                       // local port */
 
-	/* csie server (net0) */
+	/* csie server (net0)
 	info.sin_addr.s_addr = inet_addr("140.112.30.40"); // net0 IP address
-    info.sin_port = htons(2400);                       // net0 port 
+    info.sin_port = htons(2400);                       // net0 port */
 
 	// socket connection
 	printf("\ttry to connect to server, result ==> ");
@@ -61,6 +61,9 @@ int main()
 			// receive message from server
 			recv(sockfd, receiveMessage, sizeof(receiveMessage), 0);
 			printf("%s\n", receiveMessage);
+
+			if (strcmp(message, "exit") == 0)
+				break;
 		}
 
 		// close client socket
